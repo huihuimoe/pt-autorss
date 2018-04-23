@@ -20,10 +20,8 @@ const hdh = {
   'url': 'https://hdhome.org/torrents.php',
   'downloadUrl': hdhome.downloadUrl(),
   'getId': hdhome.getId(s => {
-    if(s.isSticky)
-      return false
-    if(s.isFree || s.is2xfree && s.size < 10)
-      return true
+    if (s.isSticky) { return false }
+    if ((s.isFree || s.is2xfree) && s.size < 10) { return true }
   }),
   'passkey': '',
   'cookie': ''
@@ -43,10 +41,8 @@ const u2 = {
   'url': 'https://u2.dmhy.org/torrents.php',
   'downloadUrl': u2gen.downloadUrl(),
   'getId': u2gen.getId(s => {
-    if(s.is2xfree)
-      return true
-    if(s.isCustom && s.customDetail.upload === 2.33 && s.customDetail.download === 0)
-      return true
+    if (s.is2xfree) { return true }
+    if (s.isCustom && s.customDetail.upload === 2.33 && s.customDetail.download === 0) { return true }
   }),
   'passkey': '',
   'cookie': ''
@@ -55,5 +51,5 @@ const u2 = {
 module.exports = {
   global,
   hdh,
-  ttg,
+  ttg
 }

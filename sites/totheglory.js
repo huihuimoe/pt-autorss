@@ -1,13 +1,13 @@
 // @TODO
 
 module.exports = {
-  getId() {
+  getId () {
     return document => {
       const els = Array.from(document.querySelectorAll('#torrent_table tr[class*=sticky]'))
       return els.map(e => e.id)
     }
   },
-  downloadUrl() {
+  downloadUrl () {
     return (id, passkey) => `https://totheglory.im/dl/${id}/${passkey}`
   }
 }

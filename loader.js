@@ -35,17 +35,15 @@ const loader = (config, name) => {
       })
       console.log(`Downloading ${name} - `, JSON.stringify(result));
       (async () => {
-        return;
         for (let id of result) {
           await axios.request({
             responseType: 'arraybuffer',
             url: config.downloadUrl(id, config.passkey),
-            method: 'get',
+            method: 'get'
           }).then((result) => {
             const outputFilename = path.join(config.tmpdir, `${name}-${id}.torrent`)
             fs.writeFileSync(outputFilename, result.data)
-            if(config.afterDownload)
-              afterDownload(outputFilename)
+            if (config.afterDownload) { config.afterDownload(outputFilename) }
           })
         }
       })()
