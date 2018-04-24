@@ -6,11 +6,7 @@ module.exports = {
       origin.shift()
       return origin.map(e => {
         e.children[2].remove()
-        return Object.assign({},
-          status(e), {
-            id: e.querySelector('a[href*=detail]').href.match(/(?<=id=)\d+/)[0]
-          }
-        )
+        return status(e)
       }).filter(filter).map(s => s.id)
     }
   },
