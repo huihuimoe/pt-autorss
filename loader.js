@@ -6,12 +6,10 @@ const { JSDOM } = require('jsdom')
 const loader = (config, name) => {
   const gethtml = axios.create({
     'timeout': config.timeout,
-    'headers': Object.assign(
-      {},
-      config.headers,
-      {
-        'cookie': config.cookie
-      })
+    'headers': {
+      ...config.headers,
+      'cookie': config.cookie
+    }
   })
 
   const logFile = path.join(__dirname, `${name}-id.log`)
@@ -19,13 +17,13 @@ const loader = (config, name) => {
   return () => {
     gethtml.get(config.url).then(response => {
       const { document } = (new JSDOM(response.data)).window
-      const ids = config.getId(document)
+      const torrents = config.getTorrents(document)
       const logs = fs.readFileSync(logFile).toString().split('\n')
-      const result = ids.filter(id => {
-        if (logs.includes(id)) {
+      const result = torrents.filter(torrent => {
+        if (logs.includes(torrent.id)) {
           return false
         } else {
-          fs.writeFileSync(logFile, id + '\n', {
+          fs.writeFileSync(logFile, torrent.id + '\n', {
             flag: 'a'
           })
           return true
@@ -33,15 +31,15 @@ const loader = (config, name) => {
       })
       console.log(`Downloading ${name} - `, JSON.stringify(result));
       (async () => {
-        for (let id of result) {
+        for (let torrent of result) {
           await axios.request({
             responseType: 'arraybuffer',
-            url: config.downloadUrl(id, config.passkey),
+            url: config.downloadUrl(torrent.id, config.passkey),
             method: 'get'
-          }).then((result) => {
-            const outputFilename = path.join(config.tmpdir, `${name}-${id}.torrent`)
+          }).then(result => {
+            const outputFilename = path.join(config.tmpdir, `${name}-${torrent.id}.torrent`)
             fs.writeFileSync(outputFilename, result.data)
-            if (config.afterDownload) { config.afterDownload(outputFilename) }
+            if (config.afterDownload) { config.afterDownload(outputFilename, torrent.name) }
           })
         }
       })()

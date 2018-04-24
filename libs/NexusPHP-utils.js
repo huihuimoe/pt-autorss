@@ -12,6 +12,7 @@ const status = element => {
     get is2xfree(){   return !!element.querySelector('.pro_free2up')},
     get is2x(){       return !!element.querySelector('.pro_2up')},
     get is2x50(){     return !!element.querySelector('.pro_50pctdown2up')},
+    get date(){       return new Date(element.children[3].querySelector('[title]').getAttribute('title'))},
     get size(){       return convert(element.children[4].textContent)}, // GB
     get uploader(){   return Number(element.children[5].textContent)},
     get downloader(){ return Number(element.children[6].textContent)},
@@ -29,15 +30,20 @@ const status = element => {
   }
 }
 
-const getId = filter => {
+const getTorrents = (filter = status => true, standardize = document => {}) => {
   return document => {
+    standardize(document)
     const origin = Array.from(document.querySelectorAll('.torrents > tbody > tr'))
     origin.shift()
-    return origin.map(status).filter(filter).map(s => s.id)
+    const result = origin.map(status).filter(filter)
+    return origin.map(status).filter(filter).map(s => new Object({
+      'id': s.id,
+      'name': s.name
+    }))
   }
 }
 
 module.exports = {
   status,
-  getId
+  getTorrents
 }

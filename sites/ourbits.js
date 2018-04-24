@@ -1,9 +1,7 @@
-// @TODO
-
-const { getId } = require('../libs/NexusPHP-utils')
+const { getTorrents } = require('../libs/NexusPHP-utils')
 module.exports = {
-  getId,
+  getTorrents,
   downloadUrl () {
-    return (id, passkey) => `http://ourbits.club/download.php?id=${id}&passkey=${passkey}`
+    return (id, passkey) => `http://ourbits.club/download.php?id=${id}&passkey=${passkey}&https=1`
   }
 }

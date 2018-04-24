@@ -1,6 +1,6 @@
-const { getId } = require('../libs/NexusPHP-utils')
+const { getTorrents } = require('../libs/NexusPHP-utils')
 module.exports = {
-  getId,
+  getTorrents,
   downloadUrl () {
     return (id, passkey) => `https://pt.gztown.net/download.php?id=${id}&passkey=${passkey}&https=1`
   }

@@ -1,6 +1,6 @@
 {
   "name": "pt-autorss",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Auto fetch and download torrents even can auto load torrents.",
   "main": "index.js",
   "scripts": {

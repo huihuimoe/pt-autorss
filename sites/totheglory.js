@@ -1,10 +1,12 @@
 // @TODO
 
 module.exports = {
-  getId () {
+  getTorrents () {
     return document => {
       const els = Array.from(document.querySelectorAll('#torrent_table tr[class*=sticky]'))
-      return els.map(e => e.id)
+      return els.map(e => new Object({
+        'id': e.id
+      }))
     }
   },
   downloadUrl () {

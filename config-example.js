@@ -19,7 +19,7 @@ const hdhome = require('./sites/hdhome')
 const hdh = {
   'url': 'https://hdhome.org/torrents.php',
   'downloadUrl': hdhome.downloadUrl(),
-  'getId': hdhome.getId(s => {
+  'getTorrents': hdhome.getTorrents(s => {
     if (s.isSticky) { return false }
     if ((s.isFree || s.is2xfree) && s.size < 10) { return true }
   }),
@@ -31,7 +31,7 @@ const totheglory = require('./sites/totheglory')
 const ttg = {
   'url': 'https://totheglory.im/browse.php?c=M',
   'downloadUrl': totheglory.downloadUrl(),
-  'getId': totheglory.getId(),
+  'getTorrents': totheglory.getTorrents(),
   'passkey': '',
   'cookie': ''
 }
@@ -40,7 +40,7 @@ const u2gen = require('./sites/u2')
 const u2 = {
   'url': 'https://u2.dmhy.org/torrents.php',
   'downloadUrl': u2gen.downloadUrl(),
-  'getId': u2gen.getId(s => {
+  'getTorrents': u2gen.getTorrents(s => {
     if (s.is2xfree) { return true }
     if (s.isCustom && s.customDetail.upload === 2.33 && s.customDetail.download === 0) { return true }
   }),
