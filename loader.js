@@ -15,7 +15,7 @@ const loader = (config, name) => {
   })
 
   const logFile = path.join(__dirname, `${name}-id.log`)
-  fs.closeSync(fs.openSync(logFile, 'w')) // create an empty file
+  fs.closeSync(fs.openSync(logFile, 'a')) // create an empty file
   return () => {
     gethtml.get(config.url).then(response => {
       const { document } = (new JSDOM(response.data)).window
