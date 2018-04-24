@@ -18,9 +18,7 @@ const loader = (config, name) => {
   fs.closeSync(fs.openSync(logFile, 'w')) // create an empty file
   return () => {
     gethtml.get(config.url).then(response => {
-      const {
-        document
-      } = (new JSDOM(response.data)).window
+      const { document } = (new JSDOM(response.data)).window
       const ids = config.getId(document)
       const logs = fs.readFileSync(logFile).toString().split('\n')
       const result = ids.filter(id => {
