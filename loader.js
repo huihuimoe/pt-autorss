@@ -20,7 +20,7 @@ const loader = (config, name) => {
       const torrents = config.getTorrents(document)
       const logs = fs.readFileSync(logFile).toString().split('\n')
       const result = torrents.filter(torrent => {
-        if (logs.includes(torrent.id)) {
+        if (logs.includes(torrent.id.toString())) {
           return false
         } else {
           fs.writeFileSync(logFile, torrent.id + '\n', {
