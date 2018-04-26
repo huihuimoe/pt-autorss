@@ -2,10 +2,10 @@ const convert = require('./convert')
 
 const status = element => {
   return {
-    get id(){         return element.querySelector('.torrentname a').href.match(/(?<=id=)\d+/)[0]},
+    get id(){         return Number(element.querySelector('.torrentname a').href.match(/(?<=id=)\d+/)[0])},
     get name(){       return element.querySelector('.torrentname a').textContent},
     get isSticky(){   return element.classList.toString().includes('sticky')},
-    get isHR(){       return false}, // @TODO
+    get isHR(){       return !!element.querySelector('.hitandrun')},
     get isFree(){     return !!element.querySelector('.pro_free')},
     get is50(){       return !!element.querySelector('.pro_50pctdown')},
     get is30(){       return !!element.querySelector('.pro_30pctdown')},

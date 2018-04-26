@@ -1,15 +1,33 @@
-// @TODO
+const convert = require('../libs/convert')
+const status = element => {
+  return {
+    get id(){         return Number(element.id)},
+    get name(){       return element.querySelector('.name_left a b').childNodes[0].textContent},
+    get isSticky(){   return element.classList.toString().includes('sticky')},
+    get isHR(){       return !!element.querySelector('[title="Hit and Run"]')},
+    get isFree(){     return !!element.querySelector('[alt="free"]')},
+    get is50(){       return !!element.querySelector('[alt="50%"]')},
+    get is30(){       return !!element.querySelector('[alt="30%"]')},
+    get date(){       return new Date(element.children[4].innerText.replace('\n',' '))},
+    get size(){       return convert(element.children[6].textContent.replace('\n',''))}, // GB
+    get uploader(){   return Number(element.children[8].textContent.replace('\n','').split('/')[0])},
+    get downloader(){ return Number(element.children[8].textContent.replace('\n','').split('/')[1])}
+  }
+}
 
 module.exports = {
-  getTorrents () {
+  getTorrents (filter) {
     return document => {
-      const els = Array.from(document.querySelectorAll('#torrent_table tr[class*=sticky]'))
-      return els.map(e => new Object({
-        'id': e.id
+      const origin = Array.from(document.querySelectorAll('#torrent_table > tbody > tr'))
+      origin.shift()
+      const result = origin.map(status).filter(filter)
+      return origin.map(status).filter(filter).map(s => new Object({
+        'id': s.id,
+        'name': s.name
       }))
     }
   },
   downloadUrl () {
-    return (id, passkey) => `https://totheglory.im/dl/${id}/${passkey}`
+    return ({id}, passkey) => `https://totheglory.im/dl/${id}/${passkey}`
   }
 }

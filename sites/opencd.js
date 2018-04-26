@@ -8,6 +8,6 @@ module.exports = {
     })
   },
   downloadUrl () {
-    return (id, passkey) => `https://open.cd/download.php?id=${id}&passkey=${passkey}`
+    return ({id}, passkey) => `https://open.cd/download.php?id=${id}&passkey=${passkey}`
   }
 }

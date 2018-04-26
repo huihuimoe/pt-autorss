@@ -29,12 +29,12 @@ const loader = (config, name) => {
           return true
         }
       })
-      console.log(`Downloading ${name} - `, JSON.stringify(result));
+      console.log(`Downloading ${name} - `, JSON.stringify(result.map(s => s.id)));
       (async () => {
         for (let torrent of result) {
           await axios.request({
             responseType: 'arraybuffer',
-            url: config.downloadUrl(torrent.id, config.passkey),
+            url: config.downloadUrl(torrent, config.passkey),
             method: 'get'
           }).then(result => {
             const outputFilename = path.join(config.tmpdir, `${name}-${torrent.id}.torrent`)
@@ -45,9 +45,9 @@ const loader = (config, name) => {
       })()
     }).catch(error => {
       if (error.response) {
-        console.log('Error ', name, ' - ', error.response.status)
+        console.error('Error ', name, ' - ', error.response.status)
       } else {
-        console.log('Error ', name, ' - ', error.message)
+        console.error('Error ', name, ' - ', error.message)
       }
     })
   }
