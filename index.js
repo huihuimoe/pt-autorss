@@ -9,8 +9,8 @@ const logHandler = {
     return Reflect.apply(target, ctx, [(new Date()).toLocaleString(), ' - ', ...args]);
   }
 }
-console.log = new Proxy(console.log, handler)
-console.error = new Proxy(console.error, handler)
+console.log = new Proxy(console.log, logHandler)
+console.error = new Proxy(console.error, logHandler)
 
 /**
  * load
