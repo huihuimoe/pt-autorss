@@ -4,11 +4,13 @@ const loader = require('./loader')
 /**
  * beautify logger
  */
-console.log = new Proxy(console.log, {
+const logHandler = {
   apply(target, ctx, args) {
     return Reflect.apply(target, ctx, [(new Date()).toLocaleString(), ' - ', ...args]);
   }
-})
+}
+console.log = new Proxy(console.log, handler)
+console.error = new Proxy(console.error, handler)
 
 /**
  * load
