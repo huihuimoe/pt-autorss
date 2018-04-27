@@ -1,7 +1,7 @@
 const convert = require('../libs/convert')
 const status = element => {
   return {
-    get id(){         return Number(element.id)},
+    get id(){         return +element.id},
     get name(){       return element.querySelector('.name_left a b').childNodes[0].textContent},
     get isSticky(){   return element.classList.toString().includes('sticky')},
     get isHR(){       return !!element.querySelector('[title="Hit and Run"]')},
@@ -10,8 +10,8 @@ const status = element => {
     get is30(){       return !!element.querySelector('[alt="30%"]')},
     get date(){       return new Date(element.children[4].innerText.replace('\n',' '))},
     get size(){       return convert(element.children[6].textContent.replace('\n',''))}, // GB
-    get uploader(){   return Number(element.children[8].textContent.replace('\n','').split('/')[0])},
-    get downloader(){ return Number(element.children[8].textContent.replace('\n','').split('/')[1])}
+    get uploader(){   return +element.children[8].textContent.replace('\n','').split('/')[0]},
+    get downloader(){ return +element.children[8].textContent.replace('\n','').split('/')[1]}
   }
 }
 
