@@ -6,7 +6,7 @@ const loader = require('./loader')
  */
 const logHandler = {
   apply(target, ctx, args) {
-    return Reflect.apply(target, ctx, [(new Date()).toLocaleString(), ' - ', ...args]);
+    return Reflect.apply(target, ctx, [new Date().toLocaleString(), ' - ', ...args]);
   }
 }
 console.log = new Proxy(console.log, logHandler)

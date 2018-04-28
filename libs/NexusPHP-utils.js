@@ -1,4 +1,5 @@
 const convert = require('./convert')
+const moment = require('moment')
 
 const status = element => {
   return {
@@ -12,7 +13,7 @@ const status = element => {
     get is2xfree(){   return !!element.querySelector('.pro_free2up')},
     get is2x(){       return !!element.querySelector('.pro_2up')},
     get is2x50(){     return !!element.querySelector('.pro_50pctdown2up')},
-    get date(){       return new Date(element.children[3].querySelector('[title]').getAttribute('title'))},
+    get date(){       return moment(element.children[3].querySelector('[title]').getAttribute('title'))},
     get size(){       return convert(element.children[4].textContent)}, // GB
     get uploader(){   return +element.children[5].textContent},
     get downloader(){ return +element.children[6].textContent},
@@ -20,11 +21,11 @@ const status = element => {
     customDetail: {
       get upload () {
         const text = element.querySelector('.arrowup ~ b')
-        if (text) { return +text.textContent.slice(0, -1) } else { return 1 }
+        return text ? +text.textContent.slice(0, -1) : 1
       },
       get download () {
         const text = element.querySelector('.arrowdown ~ b')
-        if (text) { return +text.textContent.slice(0, -1) } else { return 1 }
+        return text ? +text.textContent.slice(0, -1) : 1
       }
     }
   }
@@ -36,7 +37,7 @@ const getTorrents = (filter = status => true, standardize = document => {}) => {
     const origin = Array.from(document.querySelectorAll('.torrents > tbody > tr'))
     origin.shift()
     const result = origin.map(status).filter(filter)
-    return origin.map(status).filter(filter).map(s => new Object({
+    return origin.map(status).filter(filter).map(s => ({
       'id': s.id,
       'name': s.name
     }))
