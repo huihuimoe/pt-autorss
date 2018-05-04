@@ -10,7 +10,7 @@ vim config.js
 node . # or npm start
 ```
 
-To config pt-autorss, you would learn a little Javascript knowledge.
+To config pt-autorss, you would learn a little about Javascript.
 
 More custom rule see `lib/NexusPHP-utils.js`.
 
