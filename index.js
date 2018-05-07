@@ -20,9 +20,6 @@ let delay = 0
 for (let i in config) {
   if (i === 'global') { continue }
   config[i] = Object.assign({}, config['global'], config[i])
-  const func = loader(config[i], i)
-  setTimeout(() => {
-    setInterval(func, config[i]['interval'])
-    func()
-  }, delay++ * loadDelay)
+  const fn = loader(config[i], i)
+  setTimeout(fn, delay++ * loadDelay)
 }

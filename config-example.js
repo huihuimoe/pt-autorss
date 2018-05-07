@@ -35,7 +35,10 @@ const hdh = {
 
 const ttgGen = require('./sites/totheglory')
 const ttg = {
-  'url': 'https://totheglory.im/browse.php?c=M',
+  'url': [
+    'https://totheglory.im/browse.php?c=M',
+    'https://totheglory.im/browse.php?c=G'
+  ],
   'downloadUrl': ttgGen.downloadUrl(),
   'getTorrents': ttgGen.getTorrents(),
   'passkey': '',
