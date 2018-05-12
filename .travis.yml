@@ -1,0 +1,11 @@
+language: node_js
+addons:
+    apt:
+      update: true
+install:
+    - nvm install node
+    - node --version
+    - npm --version
+    - npm install
+script:
+    - npm run lint

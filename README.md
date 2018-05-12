@@ -4,7 +4,7 @@ Auto fetch and download torrents even can auto load torrents.
 
 ## Usage
 ```bash
-npm i
+npm i --production
 cp config-example.js config.js
 vim config.js
 node . # or npm start

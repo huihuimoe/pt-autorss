@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle,no-unused-vars */
 const rTorrent = require('./plugins/rTorrent')
 const tr = require('./plugins/transmission')
 
@@ -14,7 +15,7 @@ const global = {
   interval: 30000,
   timeout: 10000,
   tmpdir: '/home/torrents',
-  afterDownload: rTorrent('127.0.0.1:1088')
+  afterDownload: rTorrent('127.0.0.1:1088'),
 }
 
 const ttg = require('./sites/totheglory')({
@@ -23,7 +24,7 @@ const ttg = require('./sites/totheglory')({
     'https://totheglory.im/browse.php?c=G'
   ],
   passkey: '',
-  cookie: ''
+  cookie: '',
 })
 
 const hdh = require('./sites/hdhome')({
@@ -38,7 +39,7 @@ const hdh = require('./sites/hdhome')({
     }
   },
   passkey: '',
-  cookie: ''
+  cookie: '',
 })
 
 const u2 = require('./sites/u2')({
@@ -54,7 +55,7 @@ const u2 = require('./sites/u2')({
     }
   },
   passkey: '',
-  cookie: ''
+  cookie: '',
 })
 
 const opencd = require('./sites/opencd')({
@@ -65,7 +66,7 @@ const opencd = require('./sites/opencd')({
   }),
   url: 'https://open.cd/torrents.php?boardid=1',
   passkey: '',
-  cookie: ''
+  cookie: '',
 })
 
 module.exports = {
@@ -73,5 +74,5 @@ module.exports = {
   ttg,
   hdh,
   // u2,
-  opencd
+  opencd,
 }
