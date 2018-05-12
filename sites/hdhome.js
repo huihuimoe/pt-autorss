@@ -1,7 +1,13 @@
 const { getTorrents } = require('../libs/NexusPHP-utils')
-module.exports = {
-  getTorrents,
-  downloadUrl () {
-    return ({id}, passkey) => `https://hdhome.org/download.php?id=${id}&passkey=${passkey}`
-  }
-}
+
+const downloadUrl = ({id}, passkey) =>
+  `https://hdhome.org/download.php?id=${id}&passkey=${passkey}`
+
+module.exports = ({
+  filter,
+  ...others
+} = {}) => ({
+  downloadUrl,
+  getTorrents: getTorrents(filter),
+  ...others
+})

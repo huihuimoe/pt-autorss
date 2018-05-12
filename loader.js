@@ -5,8 +5,8 @@ const { JSDOM } = require('jsdom')
 
 const loader = (config, name) => {
   const gethtml = axios.create({
-    'timeout': config.timeout,
-    'headers': {
+    timeout: config.timeout,
+    headers: {
       ...config.headers,
       'cookie': config.cookie
     }
