@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
+    "build": "webpack -p",
+    "start:built": "node bundle.js",
     "lint": "standard --parser babel-eslint"
   },
   "author": "huihuimoe",
@@ -23,6 +25,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
-    "standard": "^11.0.1"
+    "standard": "^11.0.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
   }
 }

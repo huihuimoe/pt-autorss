@@ -16,5 +16,13 @@ More custom rule see `lib/NexusPHP-utils.js`.
 
 PR welcome.
 
+## About build
+
+If your feel running too slow in hdd drive.
+
+You can build the program and run.
+
+Just build with `npm i && npm run build` and run with `npm run start:built`
+
 ## License
 [SATA](LICENSE)
