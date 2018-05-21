@@ -1,6 +1,7 @@
 /* eslint-disable comma-dangle,no-unused-vars */
 const rTorrent = require('./plugins/rTorrent')
 const tr = require('./plugins/transmission')
+const deluge = require('./plugins/delugeRPC')
 
 const global = {
   headers: {
@@ -56,6 +57,7 @@ const u2 = require('./sites/u2')({
   },
   passkey: '',
   cookie: '',
+  afterDownload: deluge('http://127.0.0.1:8112/', 'deluge', {max_upload_speed: 51200})
 })
 
 const opencd = require('./sites/opencd')({

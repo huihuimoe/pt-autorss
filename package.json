@@ -11,6 +11,7 @@
   "license": "SATA",
   "dependencies": {
     "axios": "^0.18.0",
+    "deluge-rpc": "^1.0.1",
     "jsdom": "^11.10.0",
     "moment": "^2.22.1",
     "parse-torrent": "^6.0.0",
