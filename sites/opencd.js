@@ -7,11 +7,11 @@ const standardize = document => {
 }
 
 const status = element =>
-  Object.assign(defaultStatus(element), {
+  Object.defineProperties(defaultStatus(element), Object.getOwnPropertyDescriptors({
     get isSticky () {
       return element.querySelector('.sticky')
     }
-  })
+  }))
 
 const downloadUrl = ({id}, passkey) =>
   `https://open.cd/download.php?id=${id}&passkey=${passkey}`
