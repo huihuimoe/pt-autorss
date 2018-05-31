@@ -3,6 +3,7 @@ const rTorrent = require('./plugins/rTorrent')
 const tr = require('./plugins/transmission')
 const deluge = require('./plugins/delugeRPC')
 
+// default settings
 const global = {
   headers: {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3393.4 Safari/537.36',
@@ -19,15 +20,23 @@ const global = {
   afterDownload: rTorrent('127.0.0.1:1088'),
 }
 
+/*
+ * tips:
+ * 1. press F12 and type `document.cookie` in  console to get cookie
+ * 2. set `afterDownload: ()=>{}` to do nothing after download
+ */
+
+// download all torrents of both two url and push to rtorrent every 30s
 const ttg = require('./sites/totheglory')({
   url: [
     'https://totheglory.im/browse.php?c=M',
     'https://totheglory.im/browse.php?c=G'
   ],
-  passkey: '',
-  cookie: '',
+  passkey: 'your passkey here',
+  cookie: 'your cookie here',
 })
 
+// download only free and 2xfree except sticky torrents and push to rtorrent every 45s
 const hdh = require('./sites/hdhome')({
   interval: 45000,
   url: 'https://hdhome.org/torrents.php',
@@ -39,10 +48,16 @@ const hdh = require('./sites/hdhome')({
       return true
     }
   },
-  passkey: '',
-  cookie: '',
+  passkey: 'your passkey here',
+  cookie: 'your cookie here',
 })
 
+/*
+ * download torrents both
+ * 1. size < 100G, after 2018-04-01, uploader < 10, downloader > 10
+ * 2. ↑2.33 ↓0.00
+ * and push them to deluge
+ */
 const u2 = require('./sites/u2')({
   url: 'https://u2.dmhy.org/torrents.php',
   filter: s => {
@@ -55,11 +70,12 @@ const u2 = require('./sites/u2')({
       }
     }
   },
-  passkey: '',
-  cookie: '',
+  passkey: 'your passkey here',
+  cookie: 'your cookie here',
   afterDownload: deluge('http://127.0.0.1:8112/', 'deluge', {max_upload_speed: 51200})
 })
 
+// download all torrents and push to transmission every 60s
 const opencd = require('./sites/opencd')({
   interval: 60000,
   afterDownload: tr({
@@ -67,8 +83,8 @@ const opencd = require('./sites/opencd')({
     password: 'admin',
   }),
   url: 'https://open.cd/torrents.php?boardid=1',
-  passkey: '',
-  cookie: '',
+  passkey: 'your passkey here',
+  cookie: 'your cookie here',
 })
 
 module.exports = {
