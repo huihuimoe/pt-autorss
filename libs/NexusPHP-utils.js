@@ -1,7 +1,7 @@
 const convert = require('./convert')
 const moment = require('moment')
 
-const status = element => ({
+const defaultStatus = element => ({
   get id         () { return +element.querySelector('.torrentname a').href.match(/(?<=id=)\d+/)[0] },
   get name       () { return element.querySelector('.torrentname a').textContent },
   get isSticky   () { return element.classList.toString().includes('sticky') },
@@ -29,7 +29,7 @@ const status = element => ({
   }
 })
 
-const getTorrents = (filter = status => true, standardize = document => {}) => document => {
+const getTorrents = (filter = status => true, standardize = document => {}, status = defaultStatus) => document => {
   standardize(document)
   const origin = Array.from(document.querySelectorAll('.torrents > tbody > tr'))
   origin.shift()
@@ -40,6 +40,6 @@ const getTorrents = (filter = status => true, standardize = document => {}) => d
 }
 
 module.exports = {
-  status,
+  defaultStatus,
   getTorrents
 }

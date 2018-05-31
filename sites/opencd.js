@@ -1,10 +1,17 @@
-const { getTorrents } = require('../libs/NexusPHP-utils')
+const { defaultStatus, getTorrents } = require('../libs/NexusPHP-utils')
 
 const standardize = document => {
   for (let e of document.querySelectorAll('.torrents > tbody > tr')) {
     e.children[2].remove()
   }
 }
+
+const status = element =>
+  Object.assign(defaultStatus(element), {
+    get isSticky () {
+      return element.querySelector('.sticky')
+    }
+  })
 
 const downloadUrl = ({id}, passkey) =>
   `https://open.cd/download.php?id=${id}&passkey=${passkey}`
@@ -14,6 +21,6 @@ module.exports = ({
   ...others
 } = {}) => ({
   downloadUrl,
-  getTorrents: getTorrents(filter, standardize),
+  getTorrents: getTorrents(filter, standardize, status),
   ...others
 })
