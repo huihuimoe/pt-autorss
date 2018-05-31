@@ -1,5 +1,5 @@
 const convert = require('./convert')
-const moment = require('moment')
+const dayjs = require('dayjs')
 
 const defaultStatus = element => ({
   get id         () { return +element.querySelector('.torrentname a').href.match(/(?<=id=)\d+/)[0] },
@@ -12,7 +12,7 @@ const defaultStatus = element => ({
   get is2xfree   () { return !!element.querySelector('.pro_free2up') },
   get is2x       () { return !!element.querySelector('.pro_2up') },
   get is2x50     () { return !!element.querySelector('.pro_50pctdown2up') },
-  get date       () { return moment(element.children[3].querySelector('[title]').getAttribute('title')) },
+  get date       () { return dayjs(element.children[3].querySelector('[title]').getAttribute('title')) },
   get size       () { return convert(element.children[4].textContent) }, // GB
   get uploader   () { return +element.children[5].textContent },
   get downloader () { return +element.children[6].textContent },

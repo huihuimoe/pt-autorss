@@ -1,11 +1,11 @@
 const convert = require('../libs/convert')
-const moment = require('moment')
+const dayjs = require('dayjs')
 
 const status = element => ({
   get id         () { return +element.querySelector('td > span > a[href*=id]').href.match(/(?<=id=)\d+/)[0] },
   get name       () { return 'unknown - ' + element.querySelector('td > a').childNodes[0].textContent },
   get isFree     () { return !!element.querySelector('td > a .tl_free') },
-  get date       () { return moment(element.querySelector('span.time').getAttribute('title')) },
+  get date       () { return dayjs(element.querySelector('span.time').getAttribute('title')) },
   get size       () { return convert(element.children[3].textContent) }, // GB
   get uploader   () { return +element.children[5].textContent },
   get downloader () { return +element.children[6].textContent }
