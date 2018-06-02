@@ -28,6 +28,11 @@ const loader = (config, name) => {
         const { document } = (new JSDOM(response.data)).window
         return config.getTorrents(document)
       }))
+
+      if (!torrents.length) {
+        throw new Error('Cannot match any torrents.')
+      }
+
       const result = torrents.filter(torrent => {
         if (logs.includes(torrent.id.toString())) {
           return false
