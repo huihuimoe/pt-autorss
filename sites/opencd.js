@@ -9,7 +9,7 @@ const standardize = document => {
 const status = element =>
   Object.defineProperties(defaultStatus(element), Object.getOwnPropertyDescriptors({
     get isSticky () {
-      return element.querySelector('.sticky')
+      return !!element.querySelector('.sticky')
     }
   }))
 

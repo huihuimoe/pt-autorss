@@ -1,3 +1,7 @@
+/**
+ * Project @see https://github.com/ZJUT/NexusPHP
+ */
+
 const convert = require('./convert')
 const dayjs = require('dayjs')
 
@@ -12,6 +16,7 @@ const defaultStatus = element => ({
   get is2xfree   () { return !!element.querySelector('.pro_free2up') },
   get is2x       () { return !!element.querySelector('.pro_2up') },
   get is2x50     () { return !!element.querySelector('.pro_50pctdown2up') },
+  get isHot      () { return !!element.querySelector('.hot') },
   get date       () { return dayjs(element.children[3].querySelector('[title]').getAttribute('title')) },
   get size       () { return convert(element.children[4].textContent) }, // GB
   get uploader   () { return +element.children[5].textContent },
@@ -31,8 +36,10 @@ const defaultStatus = element => ({
 
 const getTorrents = (filter = status => true, standardize = document => {}, status = defaultStatus) => document => {
   standardize(document)
-  const origin = Array.from(document.querySelectorAll('.torrents > tbody > tr'))
-  origin.shift()
+  const origin = Array.from(document.querySelectorAll('.torrents > tbody > tr:not(:first-child)'))
+  if (!origin.length) {
+    throw new Error('Can not match torrents.')
+  }
   return origin.map(status).filter(filter).map(s => ({
     'id': s.id,
     'name': s.name

@@ -16,8 +16,10 @@ const status = element => ({
 })
 
 const getTorrents = (filter = status => true) => document => {
-  const origin = Array.from(document.querySelectorAll('#torrent_table > tbody > tr'))
-  origin.shift()
+  const origin = Array.from(document.querySelectorAll('#torrent_table > tbody > tr:not(:first-child)'))
+  if (!origin.length) {
+    throw new Error('Can not match torrents.')
+  }
   return origin.map(status).filter(filter).map(s => ({
     'id': s.id,
     'name': s.name
