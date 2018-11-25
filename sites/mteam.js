@@ -1,4 +1,9 @@
-const { getTorrents } = require('../libs/NexusPHP-utils')
+const { defaultStatus, getTorrents } = require('../libs/NexusPHP-utils')
+
+const status = element =>
+  Object.defineProperties(defaultStatus(element), Object.getOwnPropertyDescriptors({
+    get name () { return element.querySelector('.torrentname .embedded a').textContent }
+  }))
 
 /**
  * 2fa 认证
@@ -16,6 +21,6 @@ module.exports = ({
   ...others
 } = {}) => ({
   downloadUrl: downloadUrl(useIpv6),
-  getTorrents: getTorrents(filter),
+  getTorrents: getTorrents(filter, undefined, status),
   ...others
 })
