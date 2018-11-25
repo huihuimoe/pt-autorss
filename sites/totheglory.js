@@ -26,7 +26,7 @@ const getTorrents = (filter = status => true) => document => {
   }))
 }
 
-const downloadUrl = ({id}, passkey) =>
+const downloadUrl = ({ id }, passkey) =>
   `https://totheglory.im/dl/${id}/${passkey}`
 
 module.exports = ({

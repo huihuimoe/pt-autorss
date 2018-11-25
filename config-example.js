@@ -72,7 +72,7 @@ const u2 = require('./sites/u2')({
   },
   passkey: 'your passkey here',
   cookie: 'your cookie here',
-  afterDownload: deluge('http://127.0.0.1:8112/', 'deluge', {max_upload_speed: 51200})
+  afterDownload: deluge('http://127.0.0.1:8112/', 'deluge', { max_upload_speed: 51200 })
 })
 
 // download all torrents and push to transmission every 60s

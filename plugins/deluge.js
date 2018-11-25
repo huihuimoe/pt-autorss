@@ -7,7 +7,7 @@ module.exports = () => {
   return (outputFilename, name) => {
     console.log(name, ' downloaded completely. Pushing...')
     execSync(`deluge-console add ${outputFilename}`)
-    const {infoHash} = parseTorrent(fs.readFileSync(outputFilename))
+    const { infoHash } = parseTorrent(fs.readFileSync(outputFilename))
     execSync(`deluge-console info ${infoHash}`)
   }
 }

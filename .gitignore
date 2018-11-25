@@ -3,4 +3,5 @@ node_modules
 config.js
 .vscode
 package-lock.json
+yarn.lock
 bundle.js

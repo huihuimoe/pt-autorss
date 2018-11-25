@@ -13,7 +13,7 @@ const status = element =>
     }
   }))
 
-const downloadUrl = ({id}, passkey) =>
+const downloadUrl = ({ id }, passkey) =>
   `https://open.cd/download.php?id=${id}&passkey=${passkey}`
 
 module.exports = ({

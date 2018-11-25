@@ -23,7 +23,7 @@ const getTorrents = (filter = status => true) => document => {
   }))
 }
 
-const downloadUrl = ({id}, {passkey, authkey}) =>
+const downloadUrl = ({ id }, { passkey, authkey }) =>
   `https://apollo.rip/torrents.php?action=download&id=${id}&authkey=${authkey}&torrent_pass=${passkey}`
 
 module.exports = ({

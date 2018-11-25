@@ -11,7 +11,7 @@ const status = element =>
     get isSticky () { return !!element.querySelector('.sticky') }
   }))
 
-const downloadUrl = ({id}, passkey) =>
+const downloadUrl = ({ id }, passkey) =>
   `https://bt.byr.cn/download.php?id=${id}&passkey=${passkey}&https=1`
 
 module.exports = ({

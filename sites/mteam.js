@@ -11,7 +11,7 @@ const status = element =>
  */
 
 const downloadUrl = (useIpv6 = false) => {
-  return ({id}, passkey) =>
+  return ({ id }, passkey) =>
     `https://tp.m-team.cc/download.php?id=${id}&passkey=${passkey}&https=1${useIpv6 ? '&ipv6=1' : ''}`
 }
 

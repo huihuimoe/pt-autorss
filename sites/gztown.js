@@ -15,7 +15,7 @@ const status = element =>
     get is2x50   () { return !!element.querySelector('.twouphalfdown_bg') }
   }))
 
-const downloadUrl = ({id}, passkey) =>
+const downloadUrl = ({ id }, passkey) =>
   `https://pt.gztown.net/download.php?id=${id}&passkey=${passkey}&https=1`
 
 module.exports = ({

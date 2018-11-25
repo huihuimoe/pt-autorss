@@ -19,7 +19,7 @@ console.error = new Proxy(console.error, logHandler)
 let delay = 0
 for (let name in config) {
   if (name === 'global') { continue }
-  const fullConfig = {...config['global'], ...config[name]}
+  const fullConfig = { ...config['global'], ...config[name] }
   const fn = loader(fullConfig, name)
   setTimeout(fn, delay++ * loadDelay)
 }

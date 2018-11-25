@@ -1,6 +1,6 @@
 const { getTorrents } = require('../libs/NexusPHP-utils')
 
-const downloadUrl = ({id}, passkey) =>
+const downloadUrl = ({ id }, passkey) =>
   `https://u2.dmhy.org/download.php?id=${id}&passkey=${passkey}&https=1`
 
 module.exports = ({
