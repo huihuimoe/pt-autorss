@@ -1,0 +1,18 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-plugin-prettier"],
+  "rules": {
+    "curly": [true, "as-needed"],
+    "interface-name": false,
+    "linebreak-style": [true, "LF"],
+    "max-classes-per-file": false,
+    "no-console": [false],
+    "no-empty": false,
+    "no-empty-interface": false,
+    "no-unnecessary-qualifier": true,
+    "no-void-expression": true,
+    "prettier": [true],
+    "quotemark": [true, "single", "avoid-escape"],
+    "semicolon": [true, "never"],
+    "switch-default": false
+  }
+}
