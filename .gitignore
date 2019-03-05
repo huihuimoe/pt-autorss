@@ -1,7 +1,7 @@
-*.log
-node_modules
-config.js
-.vscode
-package-lock.json
-yarn.lock
-bundle.js
+/*.log
+/node_modules
+/config.ts
+/.vscode
+/package-lock.json
+/yarn.lock
+/dist
