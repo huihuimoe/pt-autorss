@@ -12,5 +12,6 @@ export default (options?: Transmission.ITransmissionOption) => {
       if (err) console.error(err)
       transmission.start(result.id, () => {})
     })
+    return file
   }
 }

@@ -7,5 +7,6 @@ export default (rpcurl: Unpacked<ArgumentTypes<typeof xmlrpc.createSecureClient>
   return (file: IDownloadToRetn) => {
     console.log(`Pushing ${file.filename} to rTorrent with rTorrentRPC...`)
     xmlrpcClient.methodCall('load.start', ['', file.path], () => {})
+    return file
   }
 }

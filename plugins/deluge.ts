@@ -11,5 +11,6 @@ export default () => {
     // parse-torrent example
     // const { infoHash } = parseTorrent(readFileSync(outputFilename))
     // execSync(`deluge-console info ${infoHash}`)
+    return file
   }
 }

@@ -12,5 +12,6 @@ export default (
     await deluge.auth()
     await deluge.connect()
     await deluge.addTorrent(file.path, options)
+    return file
   }
 }
