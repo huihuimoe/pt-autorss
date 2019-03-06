@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "axios": "0.18.0",
-    "dayjs": "1.7.7",
+    "dayjs": "1.8.9",
     "deluge-rpc": "1.0.3",
     "jsdom": "13.0.0",
     "parse-torrent": "6.1.2",
