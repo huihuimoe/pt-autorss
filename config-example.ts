@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle,no-unused-vars */
 import DelugeInitializer from './plugins/delugeRPC'
 import rTorrentInitializer from './plugins/rTorrent'
 import TransmissionInitializer from './plugins/transmission'
