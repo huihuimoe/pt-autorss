@@ -28,8 +28,10 @@ export default class Bootstrap {
 
     let delayCount = 0
     const delayStep = 3000
-    for (const instance of Object.values(instances)) instance.run()
-    await delay(delayCount++ * delayStep)
+    for (const instance of Object.values(instances)) {
+      instance.run()
+      await delay(delayCount++ * delayStep)
+    }
   }
 
   private readonly config: IBaseConfig
@@ -108,7 +110,7 @@ export default class Bootstrap {
   public async run() {
     while (true) {
       await this.runOnce().catch((error: AxiosError | Error) => {
-        if ('response' in error)
+        if ('response' in error && 'status' in error.response)
           console.error('Error ', this.configName, ' - ', error.response.status)
         else console.error('Error ', this.configName, ' - ', error.message)
       })
