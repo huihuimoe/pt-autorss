@@ -108,10 +108,13 @@ export default class Bootstrap {
   }
 
   public async run() {
+    const isAxiosError = (error: AxiosError | Error): error is AxiosError =>
+      typeof (error as AxiosError).response !== 'undefined'
+
     while (true) {
       await this.runOnce().catch((error: AxiosError | Error) => {
-        if ('response' in error && 'status' in error.response)
-          console.error('Error ', this.configName, ' - ', error.response.status)
+        if (isAxiosError(error))
+          console.error('Error ', this.configName, ' - got ', error.response.status)
         else console.error('Error ', this.configName, ' - ', error.message)
       })
       await delay(this.config.interval)
