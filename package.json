@@ -17,7 +17,7 @@
     "axios": "0.18.0",
     "dayjs": "1.8.9",
     "deluge-rpc": "1.0.3",
-    "jsdom": "13.2.0",
+    "jsdom": "14.0.0",
     "parse-torrent": "6.1.2",
     "transmission": "0.4.9",
     "ts-node": "8.0.3",
