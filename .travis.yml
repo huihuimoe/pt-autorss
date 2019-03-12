@@ -11,8 +11,6 @@ addons:
   apt:
     update: true
 install:
-  - node --version
-  - npm --version
   - npm install codecov -g
   - npm install
 script:

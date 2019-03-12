@@ -57,5 +57,17 @@
       "text-summary",
       "html"
     ]
-  }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all"
+  },
+  "renovate": {
+    "extends": [
+      "config:base"
+    ]
+  }  
 }
