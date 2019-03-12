@@ -2,6 +2,7 @@
 
 [![codecov](https://codecov.io/gh/huihuimoe/pt-autorss/branch/master/graph/badge.svg)](https://codecov.io/gh/huihuimoe/pt-autorss)
 [![Build Status](https://travis-ci.com/huihuimoe/pt-autorss.svg?branch=master)](https://travis-ci.com/huihuimoe/pt-autorss)
+![version](https://img.shields.io/github/package-json/v/huihuimoe/pt-autorss.svg)
 
 An auto fetch, filter, download and load torrents automation program.
 
