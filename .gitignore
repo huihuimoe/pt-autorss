@@ -5,3 +5,5 @@
 /package-lock.json
 /yarn.lock
 /dist
+/.nyc_output
+/coverage
