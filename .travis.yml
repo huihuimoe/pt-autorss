@@ -1,4 +1,8 @@
 language: node_js
+node_js:
+  - "8"
+  - "10"
+  - "11"
 cache:
   directories:
     - ~/.npm
@@ -7,7 +11,6 @@ addons:
   apt:
     update: true
 install:
-  - nvm install node
   - node --version
   - npm --version
   - npm install codecov -g
