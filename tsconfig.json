@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
-      "lib": ["esnext", "dom.iterable"],
-      "target": "esnext",
-      "outDir": "dist",
-      "baseUrl": ".",
-      "paths": {
-          "*": [
-              "node_modules/*"
-          ]
-      }
+    "module": "commonjs",
+    "lib": ["esnext", "dom.iterable"],
+    "target": "esnext",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
   }
 }

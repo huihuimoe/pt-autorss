@@ -1,11 +1,23 @@
 language: node_js
+node_js:
+  - "8"
+  - "10"
+  - "11"
+cache:
+  directories:
+    - ~/.npm
+    - node_modules
 addons:
-    apt:
-      update: true
+  apt:
+    update: true
 install:
-    - nvm install node
-    - node --version
-    - npm --version
-    - npm install
+  - node --version
+  - npm --version
+  - npm install codecov -g
+  - npm install
 script:
-    - npm run lint
+  - npm run lint
+  - npm run coverage
+after_success:
+  - npx nyc report --reporter=text-lcov > coverage.lcov
+  - codecov
