@@ -1,5 +1,8 @@
 # pt-autorss
 
+[![codecov](https://codecov.io/gh/huihuimoe/pt-autorss/branch/master/graph/badge.svg)](https://codecov.io/gh/huihuimoe/pt-autorss)
+[![Build Status](https://travis-ci.com/huihuimoe/pt-autorss.svg?branch=master)](https://travis-ci.com/huihuimoe/pt-autorss)
+
 An auto fetch, filter, download and load torrents automation program.
 
 Written in Typescript, type safed.
@@ -7,6 +10,7 @@ Written in Typescript, type safed.
 [Old version here.](https://github.com/huihuimoe/pt-autorss/tree/v3)
 
 ## Usage
+
 ```bash
 npm i --production
 cp config-example.ts config.ts
@@ -80,4 +84,5 @@ After reload by `systemctl --user daemon-reload`,
 you can use `systemctl --user start/stop/restart/enable/disable pt-autorss.service` to control it.
 
 ## License
+
 [SATA](LICENSE)
