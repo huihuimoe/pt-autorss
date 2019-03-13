@@ -28,8 +28,8 @@ describe('libs/helper/combineAsync', () => {
       this.str1 = 'after'
     }
     const fn2 = async () => (str2 = 'after')
-    const fn = combineAsync(fn1.bind(thisPtr), fn2)
-    await fn()
+    const fn = combineAsync(fn1, fn2)
+    await fn.call(thisPtr)
     expect(thisPtr.str1).to.eq('after')
     expect(str2).to.eq('after')
   })
