@@ -2,6 +2,7 @@
  * Project @see https://github.com/ZJUT/NexusPHP
  */
 import dayjs = require('dayjs')
+import { get } from 'lodash'
 import { global as globalConfig } from '../config'
 import { IApplication, IApplicationLifecycle, IRequireStatus } from '../typings/application'
 import { INexusPHPConfig } from '../typings/config'
@@ -79,7 +80,7 @@ export default abstract class NexusPHP<S extends INexusPHPStatus = INexusPHPStat
       get date     () { return dayjs(element.children[3].querySelector('[title]').getAttribute('title')) },
       get size     () { return convert(element.children[4].textContent) },
       get seeder   () { return +element.children[5].textContent },
-      get leecher  () { return +element.children[6].textContent },
+      get leecher  () { return +get(element.children[6].querySelector('b'), 'textContent', '0')},
       get snatched () { return +element.children[7].textContent },
     }
   }

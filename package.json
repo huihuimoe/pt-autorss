@@ -20,6 +20,7 @@
     "dayjs": "1.8.10",
     "deluge-rpc": "1.0.3",
     "jsdom": "14.0.0",
+    "lodash": "^4.17.11",
     "parse-torrent": "6.1.2",
     "transmission": "0.4.9",
     "ts-node": "8.0.3",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@types/chai": "4.1.7",
     "@types/jsdom": "12.2.3",
+    "@types/lodash": "^4.14.123",
     "@types/mocha": "5.2.6",
     "@types/node": "11.11.1",
     "@types/parse-torrent": "5.8.3",
@@ -69,5 +71,16 @@
     "extends": [
       "config:base"
     ]
-  }  
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huihuimoe/pt-autorss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/huihuimoe/pt-autorss/issues"
+  },
+  "homepage": "https://github.com/huihuimoe/pt-autorss#readme"
 }
