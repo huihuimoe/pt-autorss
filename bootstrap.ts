@@ -1,7 +1,7 @@
-import 'array-flat-polyfill' // for node < 11.0.0
 import axios, { AxiosError, AxiosInstance, AxiosPromise } from 'axios'
 import * as fs from 'fs'
 import { JSDOM } from 'jsdom'
+import { flatten } from 'lodash'
 import * as path from 'path'
 import { URL } from 'url'
 import { delay, ObjectMap, Unpacked } from './libs/helper'
@@ -66,7 +66,7 @@ export default class Bootstrap {
       const { document } = DOMTree.window
       return this.app.getTorrentsStatus(document)
     })
-    const torrentsStatus = (await Promise.all(torrentsStatusQueue)).flat()
+    const torrentsStatus = flatten(await Promise.all(torrentsStatusQueue))
     return torrentsStatus
   }
 
@@ -117,6 +117,7 @@ export default class Bootstrap {
         if (isAxiosError(error))
           console.error('Error ', this.configName, ' - got ', error.response.status)
         else console.error('Error ', this.configName, ' - ', error.message)
+        console.error(error.stack)
       })
       await delay(this.config.interval)
     }
