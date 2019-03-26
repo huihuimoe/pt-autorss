@@ -59,31 +59,6 @@ Usage: `systemctl start/stop/restart/enable/disable pt-autorss.service`
 
 View log: `journalctl -u pt-autorss`
 
-### User level
-
-If you are using sharing seedbox like feralhosting, seedhost...
-
-You can use this template. 
-
-```
-[Unit]
-Description=pt-autorss
-After=network-online.target
-[Service]
-Type=simple
-WorkingDirectory=/somedir/pt-autorss
-ExecStart=/somedir/npm start
-Restart=on-failure
-[Install]
-WantedBy=default.target
-```
-
-And put the file to `~/.config/systemd/user/pt-autorss.service`.
-
-After reload by `systemctl --user daemon-reload`,
-
-you can use `systemctl --user start/stop/restart/enable/disable pt-autorss.service` to control it.
-
 ## License
 
 [SATA](LICENSE)
