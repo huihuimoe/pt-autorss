@@ -38,6 +38,6 @@ export default (connectOptions: IqBittorrentConnectOptions, globalAddOptions: Ia
       )
     })
 
-    return status
+    return file
   }
 }
