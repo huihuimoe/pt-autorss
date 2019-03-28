@@ -17,7 +17,7 @@ const qBittorrent = qBittorrentInitializer(
   },
   {
     dlLimit: 10000000, // Bytes/s
-    skip_checking: false,
+    skip_checking: 'false',
     upLimit: 10000000,
   },
 )

@@ -18,7 +18,10 @@ export default (connectOptions: IqBittorrentConnectOptions, globalAddOptions: Ia
     await new Promise((resolve, rejects) => {
       instance.transferInfo((e, data) => {
         // relogin
-        if (e) instance.reconnect()
+        if (e) {
+          console.log('qBittorrent need relogin...')
+          instance.reconnect()
+        }
         resolve()
       })
     })
