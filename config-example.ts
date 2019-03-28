@@ -1,4 +1,5 @@
 import DelugeInitializer from './plugins/delugeRPC'
+import qBittorrentInitializer from './plugins/qBittorrent'
 import rTorrentInitializer from './plugins/rTorrent'
 import TransmissionInitializer from './plugins/transmission'
 
@@ -8,11 +9,23 @@ const qBittorrentWatchPath = '/mnt/qBittorrent/watch'
 const DelugeWithMaxUp50M = DelugeInitializer('http://127.0.0.1:8112/', 'deluge', {
   max_upload_speed: 51200,
 })
+const qBittorrent = qBittorrentInitializer(
+  {
+    host: 'http://127.0.0.1:9001',
+    password: 'admin',
+    username: 'admin',
+  },
+  {
+    dlLimit: 10000000, // Bytes/s
+    skip_checking: false,
+    upLimit: 10000000,
+  },
+)
+const rTorrent = rTorrentInitializer('127.0.0.1:1088')
 const Transmission = TransmissionInitializer({
   password: 'admin',
   username: 'admin',
 })
-const rTorrent = rTorrentInitializer('127.0.0.1:1088')
 
 // default settings
 export const global = {
@@ -49,7 +62,7 @@ const ttg = new TTG({
   },
 })
 
-// download only free and 2xfree exclude all sticky torrents and save to a specific path every 45s
+// download only free and 2xfree exclude all sticky torrents every 45s
 import HDH from './sites/hdhome'
 const hdh = new HDH({
   config: {
@@ -62,7 +75,10 @@ const hdh = new HDH({
     if ((s.isFree || s.is2xfree) && s.size < 10) return true
   },
   async success(s) {
+    // save to path
     await this.download(s).to(qBittorrentWatchPath)
+    // using qBittorrent API
+    await qBittorrent(s, { category: 'Movies' })
   },
 })
 
