@@ -1,5 +1,5 @@
 import { addOptions as IaddOptions, connect } from 'qbittorrent-api'
-import { IRequireStatus } from '../typings/application'
+import { IDownloadToRetn } from '../bootstrap'
 
 export interface IqBittorrentConnectOptions {
   host: string
@@ -13,7 +13,7 @@ export default (connectOptions: IqBittorrentConnectOptions, globalAddOptions: Ia
     connectOptions.username,
     connectOptions.password,
   )
-  return async (status: IRequireStatus, addOptions: IaddOptions = {}) => {
+  return async (file: IDownloadToRetn, addOptions: IaddOptions = {}) => {
     // test is login
     await new Promise((resolve, rejects) => {
       instance.transferInfo((e, data) => {
@@ -23,10 +23,10 @@ export default (connectOptions: IqBittorrentConnectOptions, globalAddOptions: Ia
       })
     })
 
-    console.log(`Pushing ${status.id} to qBittorrent using qBittorrent API...`)
+    console.log(`Pushing ${file.filename} to qBittorrent using qBittorrent API...`)
     await new Promise((resolve, rejects) => {
       instance.add2(
-        status.downLink,
+        file.path,
         {
           ...globalAddOptions,
           ...addOptions,

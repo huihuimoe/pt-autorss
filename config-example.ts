@@ -78,7 +78,11 @@ const hdh = new HDH({
     // save to path
     await this.download(s).to(qBittorrentWatchPath)
     // using qBittorrent API
-    await qBittorrent(s, { category: 'Movies' })
+    const result = await this.download(s).to(savePath)
+    await qBittorrent(result, {
+      category: 'Movies',
+      savepath: '/opt/Movies',
+    })
   },
 })
 
