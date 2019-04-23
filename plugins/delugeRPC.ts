@@ -1,4 +1,5 @@
 import DelugeRPC = require('deluge-rpc')
+import { readFileSync } from 'fs'
 import { IDownloadToRetn } from '../bootstrap'
 
 export default (
@@ -11,7 +12,7 @@ export default (
     console.log(`Pushing ${file.filename} to deluge with delugeRPC...`)
     await deluge.auth()
     await deluge.connect()
-    await deluge.addTorrent(file.path, {
+    await deluge.addTorrent(readFileSync(file.path), {
       ...globalOptions,
       ...options,
     })
