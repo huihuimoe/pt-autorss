@@ -16,10 +16,6 @@ export function convert(s: string) {
   if (s.endsWith('tb') || s.endsWith('tib')) return Number.parseFloat(s) * 1024
 }
 
-// prettier-ignore
-export type ArgumentTypes<F extends (...args: any) => any> = 
-  F extends (...args: infer A) => any ? A : never
-
 export interface ObjectMap<T> {
   [key: string]: T
 }
@@ -33,8 +29,8 @@ export type Unpacked<T> =
 
 // prettier-ignore
 export function combineAsync<FN extends (...args: any) => any>
-    (...fns: Array<(...args: ArgumentTypes<FN>) => void>)
-  : (...args: ArgumentTypes<FN>) => Promise<void>
+    (...fns: Array<(...args: Parameters<FN>) => void>)
+  : (...args: Parameters<FN>) => Promise<void>
 export function combineAsync(...fns: Array<(...args: any) => any>) {
   return async function(...args: any) {
     await Promise.all(fns.map(fn => fn.call(this, ...args)))

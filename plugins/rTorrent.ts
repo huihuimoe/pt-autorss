@@ -1,8 +1,8 @@
 import xmlrpc = require('xmlrpc')
 import { IDownloadToRetn } from '../bootstrap'
-import { ArgumentTypes, Unpacked } from '../libs/helper'
+import { Unpacked } from '../libs/helper'
 
-export default (rpcurl: Unpacked<ArgumentTypes<typeof xmlrpc.createSecureClient>>) => {
+export default (rpcurl: Unpacked<Parameters<typeof xmlrpc.createSecureClient>>) => {
   const xmlrpcClient = xmlrpc.createSecureClient(rpcurl)
   return (file: IDownloadToRetn) => {
     console.log(`Pushing ${file.filename} to rTorrent with rTorrentRPC...`)
