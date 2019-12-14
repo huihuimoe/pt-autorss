@@ -19,7 +19,7 @@
     "dayjs": "1.8.12",
     "deluge-rpc": "1.0.5",
     "jsdom": "15.0.0",
-    "lodash": "4.17.11",
+    "lodash": "4.17.12",
     "parse-torrent": "6.1.2",
     "qbittorrent-api": "huihuimoe/node-qbittorrent-api",
     "transmission": "0.4.9",
