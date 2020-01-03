@@ -8,11 +8,7 @@ export interface IqBittorrentConnectOptions {
 }
 
 export default (connectOptions: IqBittorrentConnectOptions, globalAddOptions: IaddOptions = {}) => {
-  const instance = connect(
-    connectOptions.host,
-    connectOptions.username,
-    connectOptions.password,
-  )
+  const instance = connect(connectOptions.host, connectOptions.username, connectOptions.password)
   return async (file: IDownloadToRetn, addOptions: IaddOptions = {}) => {
     // test is login
     await new Promise((resolve, rejects) => {
