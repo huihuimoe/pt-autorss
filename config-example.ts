@@ -1,5 +1,5 @@
 import DelugeInitializer from './plugins/delugeRPC'
-import qBittorrentInitializer from './plugins/qBittorrent-v2'
+import qBittorrentInitializer from './plugins/qBittorrentV2'
 import rTorrentInitializer from './plugins/rTorrent'
 import TransmissionInitializer from './plugins/transmission'
 
