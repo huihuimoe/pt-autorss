@@ -65,7 +65,7 @@ export default abstract class NexusPHP<S extends INexusPHPStatus = INexusPHPStat
       get id       () { return +element.querySelector<HTMLAnchorElement>('.torrentname a').href.match(/(?<=id=)\d+/)[0] },
       get catalog  () { return element.children[0].textContent || element.children[0].querySelector('img').alt },
       get name     () { return element.querySelector('.torrentname a').textContent },
-      get isSticky () { return element.classList.toString().includes('sticky') },
+      get isSticky () { return !!element.querySelector('.sticky') },
       get isHR     () { return !!element.querySelector('.hitandrun') },
       get isFree   () { return !!element.querySelector('.pro_free') },
       get is50     () { return !!element.querySelector('.pro_50pctdown') },
