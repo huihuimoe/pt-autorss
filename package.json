@@ -15,7 +15,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "0.26.1",
     "dayjs": "1.8.26",
     "deluge-rpc": "1.0.5",
     "jsdom": "^15.2.1",
