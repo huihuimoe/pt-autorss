@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/chai": "4.2.11",
     "@types/jsdom": "12.2.4",
-    "@types/lodash": "4.14.160",
+    "@types/lodash": "4.14.182",
     "@types/mocha": "7.0.2",
     "@types/node": "13.13.6",
     "@types/parse-torrent": "5.8.3",
