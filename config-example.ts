@@ -56,9 +56,7 @@ const ttg = new TTG({
     url: ['https://totheglory.im/browse.php?c=M', 'https://totheglory.im/browse.php?c=G'],
   },
   async success(s) {
-    await this.download(s)
-      .to(savePath)
-      .then(rTorrent)
+    await this.download(s).to(savePath).then(rTorrent)
   },
 })
 
@@ -105,9 +103,7 @@ const u2 = new U2({
     }
   },
   async success(s) {
-    await this.download(s)
-      .to(savePath)
-      .then(DelugeWithMaxUp50M)
+    await this.download(s).to(savePath).then(DelugeWithMaxUp50M)
   },
 })
 
@@ -120,9 +116,7 @@ const opencd = new OPENCD({
     url: 'https://open.cd/torrents.php?boardid=1',
   },
   async success(s) {
-    await this.download(s)
-      .to(savePath)
-      .then(Transmission)
+    await this.download(s).to(savePath).then(Transmission)
   },
 })
 

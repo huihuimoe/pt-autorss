@@ -60,8 +60,8 @@ export default class Bootstrap {
 
   public async fetchTorrentsStatus() {
     const urls = Array.isArray(this.config.url) ? this.config.url : [this.config.url]
-    const responses = await Promise.all(urls.map(url => this.httpClient.get<string>(url)))
-    const torrentsStatusQueue = responses.map(response => {
+    const responses = await Promise.all(urls.map((url) => this.httpClient.get<string>(url)))
+    const torrentsStatusQueue = responses.map((response) => {
       const DOMTree = new JSDOM(response.data)
       const { document } = DOMTree.window
       return this.app.getTorrentsStatus(document)
@@ -73,11 +73,8 @@ export default class Bootstrap {
   public async filterTorrentStatus(
     torrentsStatus: Unpacked<Unpacked<Bootstrap['fetchTorrentsStatus']>>,
   ) {
-    const logStream = fs
-      .readFileSync(this.logFile)
-      .toString()
-      .split('\n')
-    const filteredStatus = torrentsStatus.filter(torrent => {
+    const logStream = fs.readFileSync(this.logFile).toString().split('\n')
+    const filteredStatus = torrentsStatus.filter((torrent) => {
       if (logStream.includes(torrent.id.toString())) return false
       fs.writeFileSync(this.logFile, torrent.id + '\n', {
         flag: 'a',
@@ -94,10 +91,10 @@ export default class Bootstrap {
     await this.app.afterFetch.call(this)
 
     const filteredStatus = await this.filterTorrentStatus(torrentsStatus)
-    const customFilteredStatus = filteredStatus.filter(s => this.app.filter.call(this, s))
+    const customFilteredStatus = filteredStatus.filter((s) => this.app.filter.call(this, s))
     console.log(
       `Detected new torrents on ${this.configName} - ${JSON.stringify(
-        customFilteredStatus.map(s => s.id),
+        customFilteredStatus.map((s) => s.id),
       )}`,
     )
 
@@ -131,7 +128,7 @@ export default class Bootstrap {
     const to = async (savePath: string): Promise<IDownloadToRetn> => {
       const outputFileName = `${this.configName} - ${s.id}.torrent`
       const outputFullPath = path.join(savePath, outputFileName)
-      fs.writeFileSync(outputFullPath, (await result).data)
+      fs.writeFileSync(outputFullPath, (await result).data as NodeJS.ArrayBufferView)
       console.log(
         `Download torrent ${s.id} from ${this.configName} completed. Save to ${outputFullPath}.`,
       )

@@ -22,7 +22,7 @@ export default (connectOptions: IqBittorrentConnectOptions, globalAddOptions: Ia
           console.log('qBittorrent need relogin...')
           instance.reconnect()
         }
-        resolve()
+        resolve(true)
       })
     })
 
@@ -34,9 +34,9 @@ export default (connectOptions: IqBittorrentConnectOptions, globalAddOptions: Ia
           ...globalAddOptions,
           ...addOptions,
         },
-        e => {
+        (e) => {
           if (e) rejects(e)
-          resolve()
+          resolve(true)
         },
       )
     })

@@ -24,7 +24,7 @@ describe('libs/helper/combineAsync', () => {
       str1: 'before',
     }
     let str2 = 'before'
-    const fn1 = async function() {
+    const fn1 = async function () {
       this.str1 = 'after'
     }
     const fn2 = async () => (str2 = 'after')
@@ -54,7 +54,7 @@ describe('libs/helper/convert', () => {
 })
 
 describe('libs/helper/delay', () => {
-  it('delay basic test', done => {
+  it('delay basic test', (done) => {
     delay(30).then(done)
   })
   it('delay result return test', async () => {

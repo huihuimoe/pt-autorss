@@ -227,7 +227,7 @@ export default (
           console.log('qBittorrent need relogin...')
           instance.reconnect()
         }
-        resolve()
+        resolve(true)
       })
     })
 
@@ -241,7 +241,7 @@ export default (
         },
         e => {
           if (e) rejects(e)
-          resolve()
+          resolve(true)
         },
       )
     })

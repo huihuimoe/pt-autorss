@@ -36,7 +36,8 @@ export interface INexusPHPParam<T extends INexusPHPStatus>
 }
 
 export default abstract class NexusPHP<S extends INexusPHPStatus = INexusPHPStatus>
-  implements IApplication<S> {
+  implements IApplication<S>
+{
   public config: INexusPHPConfig
 
   public constructor(param: INexusPHPParam<S>) {

@@ -1,5 +1,5 @@
 export function delay<T = never>(time: number, v?: T) {
-  return new Promise<T>(resolve => setTimeout(resolve.bind(undefined, v), time))
+  return new Promise<T>((resolve) => setTimeout(resolve.bind(undefined, v), time))
 }
 
 /**
@@ -32,7 +32,7 @@ export function combineAsync<FN extends (...args: any) => any>
     (...fns: Array<(...args: Parameters<FN>) => void>)
   : (...args: Parameters<FN>) => Promise<void>
 export function combineAsync(...fns: Array<(...args: any) => any>) {
-  return async function(...args: any) {
-    await Promise.all(fns.map(fn => fn.call(this, ...args)))
+  return async function (...args: any) {
+    await Promise.all(fns.map((fn) => fn.call(this, ...args)))
   }
 }

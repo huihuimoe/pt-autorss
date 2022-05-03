@@ -3,7 +3,7 @@ import sinon = require('sinon')
 import NexusPHP from '../../libs/NexusPHP'
 
 describe('libs/NexusPHP', () => {
-  it('Status', done => {
+  it('Status', (done) => {
     // @TODO
     // ↓ BUGGGGGGGGGGG!
     // class TestClass extends NexusPHP {}
