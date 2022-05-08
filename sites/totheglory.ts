@@ -22,6 +22,7 @@ export default class TTG extends NexusPHP {
       get is2x50     () { return false },
       get isNew      () { return !!element.querySelector('.new') },
       get isHot      () { return !!element.querySelector('.hot') },
+      get detailLink () { return element.querySelector<HTMLAnchorElement>('.name_left a').href },
       get downLink   () { return element.children[1].querySelector<HTMLAnchorElement>('.dl_a').href },
       get comments   () { return +element.children[3].textContent },
       get date       () { return dayjs(element.children[4].textContent.replace('\n', ' ')) },

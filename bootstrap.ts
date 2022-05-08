@@ -39,6 +39,8 @@ export default class Bootstrap {
   private readonly httpClient: AxiosInstance
   private readonly logFile: fs.PathLike
 
+  public get http() { return this.httpClient }
+
   public constructor(readonly app: IApplication, readonly configName: string) {
     this.config = app.config
 
@@ -60,11 +62,11 @@ export default class Bootstrap {
 
   public async fetchTorrentsStatus() {
     const urls = Array.isArray(this.config.url) ? this.config.url : [this.config.url]
-    const responses = await Promise.all(urls.map((url) => this.httpClient.get<string>(url)))
-    const torrentsStatusQueue = responses.map((response) => {
+    const responses = await Promise.all(urls.map(url => this.httpClient.get<string>(url)))
+    const torrentsStatusQueue = responses.map(async response => {
       const DOMTree = new JSDOM(response.data)
       const { document } = DOMTree.window
-      return this.app.getTorrentsStatus(document)
+      return await this.app.getTorrentsStatus(document)
     })
     const torrentsStatus = flatten(await Promise.all(torrentsStatusQueue))
     return torrentsStatus
@@ -91,10 +93,10 @@ export default class Bootstrap {
     await this.app.afterFetch.call(this)
 
     const filteredStatus = await this.filterTorrentStatus(torrentsStatus)
-    const customFilteredStatus = filteredStatus.filter((s) => this.app.filter.call(this, s))
+    const customFilteredStatus = filteredStatus.filter(s => this.app.filter.call(this, s))
     console.log(
       `Detected new torrents on ${this.configName} - ${JSON.stringify(
-        customFilteredStatus.map((s) => s.id),
+        customFilteredStatus.map(s => s.id),
       )}`,
     )
 

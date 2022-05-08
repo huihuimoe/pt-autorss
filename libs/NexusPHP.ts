@@ -11,6 +11,7 @@ import { combineAsync, convert } from './helper'
 export interface INexusPHPStatus extends IRequireStatus {
   readonly catalog: string
   readonly name: string
+  readonly detailLink: string
   readonly isSticky: boolean
   readonly isHR: boolean
   readonly isFree: boolean
@@ -63,26 +64,28 @@ export default abstract class NexusPHP<S extends INexusPHPStatus = INexusPHPStat
   public getStatus(element: Element): INexusPHPStatus {
     // prettier-ignore
     return {
-      get id       () { return +element.querySelector<HTMLAnchorElement>('.torrentname a').href.match(/(?<=id=)\d+/)[0] },
-      get catalog  () { return element.children[0].textContent || element.children[0].querySelector('img').alt },
-      get name     () { return element.querySelector('.torrentname a').textContent },
-      get isSticky () { return !!element.querySelector('.sticky') },
-      get isHR     () { return !!element.querySelector('.hitandrun') },
-      get isFree   () { return !!element.querySelector('.pro_free') },
-      get is50     () { return !!element.querySelector('.pro_50pctdown') },
-      get is30     () { return !!element.querySelector('.pro_30pctdown') },
-      get is2xfree () { return !!element.querySelector('.pro_free2up') },
-      get is2x     () { return !!element.querySelector('.pro_2up') },
-      get is2x50   () { return !!element.querySelector('.pro_50pctdown2up') },
-      get isNew    () { return !!element.querySelector('.new') },
-      get isHot    () { return !!element.querySelector('.hot') },
-      get downLink () { return (element.children[1].querySelector('[alt=download]').parentElement as HTMLAnchorElement).href },
-      get comments () { return +element.children[2].textContent },
-      get date     () { return dayjs(element.children[3].querySelector('[title]').getAttribute('title')) },
-      get size     () { return convert(element.children[4].textContent) },
-      get seeder   () { return +element.children[5].textContent },
-      get leecher  () { return +get(element.children[6].querySelector('b'), 'textContent', '0')},
-      get snatched () { return +element.children[7].textContent },
+      get id         () { return +element.querySelector<HTMLAnchorElement>('.torrentname a').href.match(/(?<=id=)\d+/)[0] },
+      get catalog    () { return element.children[0].textContent || element.children[0].querySelector('img').alt },
+      get name       () { return element.querySelector('.torrentname a').textContent },
+      get isSticky   () { return !!element.querySelector('.sticky') },
+      get isHR       () { return !!element.querySelector('.hitandrun') },
+      get isFree     () { return !!element.querySelector('.pro_free') },
+      get is50       () { return !!element.querySelector('.pro_50pctdown') },
+      get is30       () { return !!element.querySelector('.pro_30pctdown') },
+      get is2xfree   () { return !!element.querySelector('.pro_free2up') },
+      get is2x       () { return !!element.querySelector('.pro_2up') },
+      get is2x50     () { return !!element.querySelector('.pro_50pctdown2up') },
+      get isNew      () { return !!element.querySelector('.new') },
+      get isHot      () { return !!element.querySelector('.hot') },
+      get detailLink () { return element.querySelector<HTMLAnchorElement>('.torrentname a').href },
+      get downLink   () { return (element.children[1].querySelector('[alt=download]').parentElement as HTMLAnchorElement).href },
+      get comments   () { return +element.children[2].textContent },
+      get date       () { return dayjs(element.children[3].querySelector('[title]').getAttribute('title')) },
+      get size       () { return convert(element.children[4].textContent) },
+      // TODO: 注意这里 seeder leecher snatched 超过 1000 的话会读取为 1,000 的值，需要做替换
+      get seeder     () { return +element.children[5].textContent },
+      get leecher    () { return +get(element.children[6].querySelector('b'), 'textContent', '0')},
+      get snatched   () { return +element.children[7].textContent },
     }
   }
 

@@ -36,3 +36,16 @@ export function combineAsync(...fns: Array<(...args: any) => any>) {
     await Promise.all(fns.map((fn) => fn.call(this, ...args)))
   }
 }
+
+export function createRetry(times = 3, delay = 1000) {
+  return <T>(fn: () => Promise<T>) => new Promise<T>((resolve, reject) => {
+    const retry = () => {
+      fn().then(resolve).catch((e) => {
+        if (--times) setTimeout(retry, delay)
+        else reject(e)
+      }
+      )
+    }
+    retry()
+  })
+}
