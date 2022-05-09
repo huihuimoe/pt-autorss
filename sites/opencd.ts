@@ -1,4 +1,4 @@
-import dayjs = require('dayjs')
+import dayjs from 'dayjs'
 import { get } from 'lodash'
 import { convert } from '../libs/helper'
 import NexusPHP from '../libs/NexusPHP'

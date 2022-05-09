@@ -1,4 +1,4 @@
-import xmlrpc = require('xmlrpc')
+import xmlrpc from 'xmlrpc'
 import { IDownloadToRetn } from '../bootstrap'
 import { Unpacked } from '../libs/helper'
 

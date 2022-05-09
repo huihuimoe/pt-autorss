@@ -11,11 +11,11 @@ export interface IqBittorrentV2ConnectOptions {
   password: string
 }
 
-import async = require('async')
-import fs = require('fs')
-import path = require('path')
-import request = require('request')
-import stream = require('stream')
+import async from 'async'
+import fs from 'fs'
+import path from 'path'
+import request from 'request'
+import stream from 'stream'
 interface QueueReq {
   method: string
   url: string

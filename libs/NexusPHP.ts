@@ -1,7 +1,7 @@
 /*
  * Project @see https://github.com/ZJUT/NexusPHP
  */
-import dayjs = require('dayjs')
+import dayjs from 'dayjs'
 import { get } from 'lodash'
 import { global as globalConfig } from '../config'
 import { IApplication, IApplicationLifecycle, IRequireStatus } from '../typings/application'

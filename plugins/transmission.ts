@@ -1,4 +1,4 @@
-import Transmission = require('transmission')
+import Transmission from 'transmission'
 import { IDownloadToRetn } from '../bootstrap'
 
 /**

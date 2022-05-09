@@ -1,4 +1,4 @@
-import DelugeRPC = require('deluge-rpc')
+import DelugeRPC from 'deluge-rpc'
 import { readFileSync } from 'fs'
 import { IDownloadToRetn } from '../bootstrap'
 

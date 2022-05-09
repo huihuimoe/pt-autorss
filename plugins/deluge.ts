@@ -1,7 +1,7 @@
 import { execSync } from 'child_process'
 import { IDownloadToRetn } from '../bootstrap'
 // import { readFileSync } from 'fs'
-// import parseTorrent = require('parse-torrent')
+// import parseTorrent from 'parse-torrent'
 
 // need deluge-console
 export default () => {
