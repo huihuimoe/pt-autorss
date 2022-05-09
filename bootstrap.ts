@@ -60,8 +60,8 @@ export default class Bootstrap {
     fs.closeSync(fs.openSync(this.logFile, 'a'))
   }
 
-  public async fetchTorrentsStatus() {
-    const urls = Array.isArray(this.config.url) ? this.config.url : [this.config.url]
+  public async fetchTorrentsStatus(specUrls?: string[]) {
+    const urls = specUrls ?? (Array.isArray(this.config.url) ? this.config.url : [this.config.url])
     const responses = await Promise.all(urls.map(url => this.httpClient.get<string>(url)))
     const torrentsStatusQueue = responses.map(async response => {
       const DOMTree = new JSDOM(response.data)

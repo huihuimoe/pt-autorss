@@ -43,8 +43,7 @@ export function createRetry(times = 3, delay = 1000) {
       fn().then(resolve).catch((e) => {
         if (--times) setTimeout(retry, delay)
         else reject(e)
-      }
-      )
+      })
     }
     retry()
   })
