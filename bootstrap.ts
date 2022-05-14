@@ -13,6 +13,7 @@ export interface IDownloadToRetn {
   filename: string
   path: string
   s: IRequireStatus
+  config: IBaseConfig
 }
 
 export interface IDownloadRetn {
@@ -40,6 +41,7 @@ export default class Bootstrap {
   private readonly logFile: fs.PathLike
 
   public get http() { return this.httpClient }
+  public get configs() { return this.config }
 
   public constructor(readonly app: IApplication, readonly configName: string) {
     this.config = app.config
@@ -139,6 +141,7 @@ export default class Bootstrap {
         filename: outputFileName,
         path: outputFullPath,
         s,
+        config: this.config,
       }
     }
     return { configName: this.configName, result, s, to }
