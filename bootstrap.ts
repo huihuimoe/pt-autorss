@@ -13,6 +13,7 @@ export interface IDownloadToRetn {
   filename: string
   path: string
   s: IRequireStatus
+  config: IBaseConfig
 }
 
 export interface IDownloadRetn {
@@ -139,6 +140,7 @@ export default class Bootstrap {
         filename: outputFileName,
         path: outputFullPath,
         s,
+        config: this.config,
       }
     }
     return { configName: this.configName, result, s, to }

@@ -129,9 +129,9 @@ function addTorrent(queue, torrent, options, callback) {
           callback(
             new Error(
               'AddTorrent failed ' +
-                response.statusCode +
-                '  with options: ' +
-                JSON.stringify(options),
+              response.statusCode +
+              '  with options: ' +
+              JSON.stringify(options),
             ),
           )
           return
@@ -159,9 +159,9 @@ function addTorrentUrl(queue, url, options, callback) {
           callback(
             new Error(
               'AddTorrentUrl failed ' +
-                response.statusCode +
-                '  with options: ' +
-                JSON.stringify(options),
+              response.statusCode +
+              '  with options: ' +
+              JSON.stringify(options),
             ),
           )
           return
@@ -186,7 +186,6 @@ const connectV2 = (host: string, username: string, password: string) => {
   })
   if (username && password) reconnect()
 
-  const cookies = new Map()
   return {
     add2: (torrent, options, callback) => {
       options = options || {}
@@ -197,7 +196,6 @@ const connectV2 = (host: string, username: string, password: string) => {
         }
       }
       if (typeof torrent === 'string' && torrent.match(/^(?:http|magnet:|bc:)/)) {
-        options['cookie'] = cookies.get(new URL(torrent).host)
         addTorrentUrl(queue, torrent, options, callback)
       } else {
         addTorrent(queue, torrent, options, callback)
@@ -218,7 +216,7 @@ export default (
   globalAddOptions: IaddOptions = {},
 ) => {
   const instance = connectV2(connectOptions.host, connectOptions.username, connectOptions.password)
-  return async (file: IDownloadToRetn, addOptions: IaddOptions = {}) => {
+  return async (file: IDownloadToRetn | string, addOptions: IaddOptions = {}) => {
     // test is login
     await new Promise((resolve, rejects) => {
       instance.transferInfo((e, data) => {
@@ -231,20 +229,36 @@ export default (
       })
     })
 
-    console.log(`Pushing ${file.filename} to qBittorrent using qBittorrent API...`)
-    await new Promise((resolve, rejects) => {
-      instance.add2(
-        file.path,
-        {
-          ...globalAddOptions,
-          ...addOptions,
-        },
-        e => {
-          if (e) rejects(e)
-          resolve(true)
-        },
-      )
-    })
+    const options = {
+      ...globalAddOptions,
+      ...addOptions,
+    }
+
+    if (typeof file === 'string') {
+      console.log(`Pushing ${file} to qBittorrent using qBittorrent API...`)
+      await new Promise((resolve, rejects) => {
+        instance.add2(
+          file,
+          options,
+          e => {
+            if (e) rejects(e)
+            resolve(true)
+          },
+        )
+      })
+    } else {
+      console.log(`Pushing ${file.filename} to qBittorrent using qBittorrent API...`)
+      await new Promise((resolve, rejects) => {
+        instance.add2(
+          file.path,
+          options,
+          e => {
+            if (e) rejects(e)
+            resolve(true)
+          },
+        )
+      })
+    }
 
     return file
   }
