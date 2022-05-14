@@ -18,7 +18,7 @@
     "axios": "0.27.2",
     "dayjs": "1.11.1",
     "deluge-rpc": "1.0.5",
-    "jsdom": "^19.0.0",
+    "jsdom": "19.0.0",
     "lodash": "4.17.21",
     "parse-torrent": "9.1.5",
     "qbittorrent-api": "huihuimoe/node-qbittorrent-api",
