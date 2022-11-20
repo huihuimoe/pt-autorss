@@ -41,7 +41,7 @@
     "mocha": "10.0.0",
     "nyc": "15.1.0",
     "prettier": "2.6.2",
-    "sinon": "13.0.2",
+    "sinon": "14.0.2",
     "tslint": "5.20.1",
     "tslint-config-prettier": "1.18.0",
     "tslint-plugin-prettier": "2.3.0"
