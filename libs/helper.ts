@@ -16,6 +16,10 @@ export function convert(s: string) {
   if (s.endsWith('tb') || s.endsWith('tib')) return Number.parseFloat(s) * 1024
 }
 
+export function parseIntWithComma(s: string) {
+  return Number.parseInt(s.trim().replace(/,/g, ''))
+}
+
 export interface ObjectMap<T> {
   [key: string]: T
 }

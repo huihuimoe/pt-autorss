@@ -2,11 +2,10 @@
  * Project @see https://github.com/ZJUT/NexusPHP
  */
 import dayjs from 'dayjs'
-import { get } from 'lodash'
 import { global as globalConfig } from '../config'
 import { IApplication, IApplicationLifecycle, IRequireStatus } from '../typings/application'
 import { INexusPHPConfig } from '../typings/config'
-import { combineAsync, convert } from './helper'
+import { combineAsync, convert, parseIntWithComma } from './helper'
 
 export interface INexusPHPStatus extends IRequireStatus {
   readonly catalog: string
@@ -82,10 +81,9 @@ export default abstract class NexusPHP<S extends INexusPHPStatus = INexusPHPStat
       get comments   () { return +element.children[2].textContent },
       get date       () { return dayjs(element.children[3].querySelector('[title]').getAttribute('title')) },
       get size       () { return convert(element.children[4].textContent) },
-      // TODO: 注意这里 seeder leecher snatched 超过 1000 的话会读取为 1,000 的值，需要做替换
-      get seeder     () { return +element.children[5].textContent },
-      get leecher    () { return +get(element.children[6].querySelector('b'), 'textContent', '0')},
-      get snatched   () { return +element.children[7].textContent },
+      get seeder     () { return parseIntWithComma(element.children[5].textContent) },
+      get leecher    () { return parseIntWithComma(element.children[6].textContent) },
+      get snatched   () { return parseIntWithComma(element.children[7].textContent) },
     }
   }
 
